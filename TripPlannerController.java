@@ -23,7 +23,6 @@ import javafx.stage.StageStyle;
 public class TripPlannerController implements Initializable {
     /*
      * 3 windows
-     * Menu Bar on Window 1
      * Two buttons on bottom left to open "full windows"
      * Add Button for destination
      * Top-Left is just the first destination and the last destination.
