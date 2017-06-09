@@ -27,17 +27,35 @@ public class Trip {
 	{
 		Trip newTrip = new Trip(name, new ArrayList<Destination>());
 		String getDirection = "";
-		for(String place : destinations)
-		{
+		
 			try {
-				URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + place + "&key=AlzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
-				Scanner reader = new Scanner(url.openStream());
-				for(int i = 0; i < 25; i++)
+				for(String place : destinations)
 				{
-					reader.nextLine();
+				place = place.replaceAll(" ", "+");
+				URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + place + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
+				Scanner reader = new Scanner(url.openStream());
+				String input = "";
+				while(reader.hasNextLine())
+				{
+					input = reader.nextLine();
+					if(input.contains("place_id"))
+					{
+						break;
+					}
 				}
-				String[] placeID = reader.nextLine().split("\"");
-				getDirection = getDirection.concat(placeID[3]);
+				//TODO just put the entered names straight into the directions API
+				String[] placeID = input.split("\"");
+				getDirection = getDirection.concat("place_id:" + placeID[3] + "|");
+				reader.close();
+				}
+				URL directionsURL = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + 
+					getDirection.substring(0, 36) + "&destination=" + getDirection.substring(getDirection.length()-37, getDirection.length()-1).split("|")[0]
+							+ "&waypoints=" + getDirection.substring(37, getDirection.length()-29) + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
+				Scanner reader = new Scanner(directionsURL.openStream());
+				while(reader.hasNextLine())
+				{
+					System.out.println(reader.nextLine());
+				}
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -49,7 +67,7 @@ public class Trip {
 			//TODO get directions between each destination
 			//TODO create the new destination
 			//TODO add the destination to newTrip's destinationList
-		}
+		
 		return null;
 	}
 	public void saveTripToFile()
