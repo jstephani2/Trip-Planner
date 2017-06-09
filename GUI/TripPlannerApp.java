@@ -1,3 +1,5 @@
+package GUI;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +12,7 @@ public class TripPlannerApp extends Application {
     private static final String SCENE_TITLE = "Trip Planner";
     private static final double SCENE_WIDTH = 800;
     private static final double SCENE_HEIGHT = 600;
-    private static final String SCENE_FXML = "TripPlanner.fxml";
+    private static final String SCENE_FXML = "GUI/TripPlanner.fxml";
 
     @Override
     public void start(Stage primaryStage) throws Exception {
