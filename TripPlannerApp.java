@@ -2,7 +2,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import javax.swing.*;
@@ -12,19 +11,18 @@ public class TripPlannerApp extends Application {
     private static final double SCENE_WIDTH = 800;
     private static final double SCENE_HEIGHT = 600;
     private static final String SCENE_FXML = "TripPlanner.fxml";
-    private static final String ICON = "icon.jpg";
     
     public static void main(String[] args) {
+		
 		launch(args);
-	}
 
+	}
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
             Parent root = FXMLLoader.load(getClass().getResource(SCENE_FXML));
             primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
             primaryStage.setTitle(SCENE_TITLE);
-            primaryStage.getIcons().add(new Image(ICON));
             //primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
