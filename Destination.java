@@ -43,6 +43,7 @@ public class Destination {
 	public void removeFromList(String item)
 	{
 		if(packingList.remove(item))
+			//TODO change to GUI
 			System.out.println(item + " successfully removed.");
 		else
 			System.out.println(item + " did not exist in the list.");
@@ -53,8 +54,9 @@ public class Destination {
 		String toReturn = name + "\n";
 		for(String packingItem : packingList)
 		{
-			toReturn = toReturn.concat(packingItem);
+			toReturn = toReturn.concat(packingItem + ",");
 		}
+		toReturn = toReturn.concat("\n" + numItemsInList + "\n" + distance + "\n" + length + "\n" + directions);
 		//TODO
 		return toReturn;
 		

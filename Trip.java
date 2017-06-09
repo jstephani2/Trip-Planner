@@ -1,5 +1,6 @@
 import java.nio.file.*;
 import java.util.ArrayList;
+import java.io.*;
 
 public class Trip {
 //	private Destination start;
@@ -34,7 +35,17 @@ public class Trip {
 	}
 	public void saveTripToFile()
 	{
-		
+		try {
+			FileWriter output = new FileWriter(this.name + ".txt");
+			for(Destination dest : destinationList)
+			{
+				output.write(dest.toString());
+			}
+			output.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void removeDestination()
 	{
