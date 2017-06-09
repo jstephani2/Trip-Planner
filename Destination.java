@@ -4,23 +4,26 @@ public class Destination {
 	private String name;
 	private ArrayList<String> packingList;
 	private int numItemsInList;
-	private Destination next;
+//	private Destination next;
 	private double distance;
 	private int length;
+	private String directions;
 	
-	public Destination(String name, ArrayList<String> packingList, Destination next, double distance, int length)
+	public Destination(String name, ArrayList<String> packingList, double distance, int length,
+			String directions)
 	{
 		this.name = name;
 		this.packingList = packingList;
-		this.next = next;
+//		this.next = next;
 		this.distance = distance;
 		this.length = length;
+		this.directions = directions;
 	}
 	public Destination(String name, Destination next, double distance, int length)
 	{
 		this.name = name;
 		packingList = new ArrayList<String>();
-		this.next = next;
+//		this.next = next;
 		this.distance = distance;
 		this.length = length;
 	}
@@ -44,19 +47,29 @@ public class Destination {
 		else
 			System.out.println(item + " did not exist in the list.");
 	}
-	public void setNext(Destination place)
+	@Override
+	public String toString()
 	{
-		this.next = place;
+		String toReturn = name + "\n";
+		for(String packingItem : packingList)
+		{
+			toReturn = toReturn.concat(packingItem);
+		}
+		
 	}
-	public Destination getNext()
-	{
-		return next;
-	}
-	public void print()
-	{
-		System.out.println(name + " " + distance + " miles " + length + " minutes.");
-		if(null == next)
-			return;
-		next.print();
-	}
+//	public void setNext(Destination place)
+//	{
+//		this.next = place;
+//	}
+//	public Destination getNext()
+//	{
+//		return next;
+//	}
+//	public void print()
+//	{
+//		System.out.println(name + " " + distance + " miles " + length + " minutes.");
+//		if(null == next)
+//			return;
+//		next.print();
+//	}
 }
