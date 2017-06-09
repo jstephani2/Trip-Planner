@@ -47,6 +47,16 @@ public class Destination {
 		else
 			System.out.println(item + " did not exist in the list.");
 	}
+	@Override
+	public String toString()
+	{
+		String toReturn = name + "\n";
+		for(String packingItem : packingList)
+		{
+			toReturn = toReturn.concat(packingItem);
+		}
+		
+	}
 //	public void setNext(Destination place)
 //	{
 //		this.next = place;

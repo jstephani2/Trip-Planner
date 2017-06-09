@@ -39,9 +39,9 @@ public class Trip {
 	{
 	
 	}
-	public void addDestination(int pos)
+	public void addDestination(int pos, Destination destination)
 	{
-		
+		destinationList.add(pos,destination);
 	}
 	public int getNumberOfDestinations()
 	{
