@@ -1,4 +1,4 @@
-package GUI; /**
+/**
  * Created by bengi on 6/8/2017.
  */
 
@@ -33,9 +33,9 @@ public class TripPlannerController implements Initializable {
 
     //https://rterp.wordpress.com/2014/04/25/gmapsfx-add-google-maps-to-your-javafx-application/
 
-    private static final String NEW_TRIP_FXML = "GUI/NewTrip.fxml";
-    private static final String PACKING_LIST_FXML = "GUI/PackingList.fxml";
-    private static final String DIRECTIONS_FXML = "GUI/Directions.fxml";
+    private static final String NEW_TRIP_FXML = "NewTrip.fxml";
+    private static final String PACKING_LIST_FXML = "PackingList.fxml";
+    private static final String DIRECTIONS_FXML = "Directions.fxml";
 
     //FXML IMPORT
     public Button fullPackingListButton;

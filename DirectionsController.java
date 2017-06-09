@@ -1,4 +1,4 @@
-package GUI; /**
+/**
  * Created by bengi on 6/8/2017.
  */
 
@@ -12,7 +12,7 @@ import javafx.fxml.Initializable;
  *
  * @author bengi
  */
-public class NewTripController implements Initializable {
+public class DirectionsController implements Initializable {
     /**
      * Initializes the controller class.
      */
