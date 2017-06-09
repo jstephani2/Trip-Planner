@@ -55,6 +55,8 @@ public class Destination {
 		{
 			toReturn = toReturn.concat(packingItem);
 		}
+		//TODO
+		return toReturn;
 		
 	}
 //	public void setNext(Destination place)
