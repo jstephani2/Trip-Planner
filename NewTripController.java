@@ -13,6 +13,13 @@ import javafx.fxml.Initializable;
  * @author bengi
  */
 public class NewTripController implements Initializable {
+
+    /*
+     * Get start layout y , when adding under it add the stop 20 under the start y, move the add stop down 20.
+     * and resize pane by 20. limit pane max size.
+     *
+     */
+
     /**
      * Initializes the controller class.
      */
@@ -20,4 +27,7 @@ public class NewTripController implements Initializable {
     public void initialize(URL url, ResourceBundle bundle) {
         // TODO
     }
+
+    //create new stop
+
 }
