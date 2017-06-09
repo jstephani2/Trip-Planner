@@ -57,7 +57,6 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PACKING_LIST_FXML));
             Parent fullPackingListParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Packing List");
             stage.setScene(new Scene(fullPackingListParent));
             stage.show();
@@ -71,7 +70,6 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(DIRECTIONS_FXML));
             Parent fullDirectionsParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("Directions");
             stage.setScene(new Scene(fullDirectionsParent));
             stage.show();
@@ -85,9 +83,9 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(NEW_TRIP_FXML));
             Parent newTripParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
             stage.setTitle("New Trip");
             stage.setScene(new Scene(newTripParent));
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
