@@ -31,6 +31,9 @@ public class TripPlannerController implements Initializable {
      * DO NOT add list buttons on the new trip
      */
 
+    //CSS StyleSheet
+    //http://code.makery.ch/library/javafx-8-tutorial/part4/
+
     //https://rterp.wordpress.com/2014/04/25/gmapsfx-add-google-maps-to-your-javafx-application/
 
     private static final String NEW_TRIP_FXML = "NewTrip.fxml";
