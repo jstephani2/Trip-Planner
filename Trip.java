@@ -52,6 +52,7 @@ public class Trip {
 					getDirection.substring(0, 36) + "&destination=" + getDirection.substring(getDirection.length()-37, getDirection.length()-1).split("|")[0]
 							+ "&waypoints=" + getDirection.substring(37, getDirection.length()-29) + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
 				Scanner reader = new Scanner(directionsURL.openStream());
+				//TODO
 				while(reader.hasNextLine())
 				{
 					System.out.println(reader.nextLine());
