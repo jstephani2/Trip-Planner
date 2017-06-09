@@ -6,29 +6,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewTripController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewTripController">
    <children>
       <Button layoutX="350" layoutY="365" mnemonicParsing="false" text="GO">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Label layoutX="10" layoutY="10.0" text="Start: ">
+      <Label fx:id="startLabel" layoutX="10" layoutY="10.0" text="Start: ">
           <font>
               <Font size="14.0" />
           </font>
       </Label>
-      <TextField layoutX="45" layoutY="10.0" />
-       <Label layoutX="10" layoutY="50.0" text="Add Stop:">
+      <TextField fx:id="startTextField" layoutX="45" layoutY="10.0" />
+       <Label fx:id="addStopLabel" layoutX="10" layoutY="50.0" text="Add Stop:">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
-       <TextField layoutX="75" layoutY="50.0" />
-       <Label layoutX="10" layoutY="110.0" text="End: ">
+       <TextField fx:id="addStopTextField" layoutX="75" layoutY="50.0" onAction="#addStopTextField" />
+       <Label fx:id="endLabel" layoutX="10" layoutY="110.0" text="End: ">
            <font>
                <Font size="14.0" />
            </font>
        </Label>
-       <TextField layoutX="45" layoutY="110.0" />
+       <TextField fx:id="endTextField" layoutX="45" layoutY="110.0" onAction="#endTextField" />
    </children>
 </Pane>
