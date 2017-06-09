@@ -28,9 +28,7 @@ public class Trip {
 			//TODO get directions between each destination
 			//TODO create the new destination
 			//TODO add the destination to newTrip's destinationList
-			//TODO test
 		}
-		
 		return null;
 	}
 	public void saveTripToFile()
