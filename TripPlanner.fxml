@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TripPlannerController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@PackingList.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TripPlannerController">
     <children>
         <Button fx:id="newTripButton" layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#newTripButton" prefHeight="40.0" prefWidth="80.0" text="New">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Open">
+        <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Open">
             <font>
                 <Font size="14.0" />
             </font>
@@ -78,7 +78,7 @@
                 </VBox>
             </content>
         </ScrollPane>
-      <Label layoutX="57.0" layoutY="130.0" text="Destination Start:" />
-      <Label layoutX="57.0" layoutY="206.0" text="Destination End:" />
+      <Label layoutX="31.0" layoutY="132.0" text="Destination Start:" />
+      <Label layoutX="31.0" layoutY="229.0" text="Destination End:" />
     </children>
 </Pane>

@@ -9,14 +9,19 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * TODO Add Class Javadocs
+ * Controller for the Main Window Trip Planner
  *
  * @author bengi
  */
@@ -43,13 +48,14 @@ public class TripPlannerController implements Initializable {
     public Button fullPackingListButton;
     public Button fullDirectionsButton;
     public Button newTripButton;
+    public Pane pane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-
+        //pane.setBackground?
     }
 
     public void fullPackingListButton(ActionEvent event) {
@@ -57,8 +63,9 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PACKING_LIST_FXML));
             Parent fullPackingListParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Packing List");
+            stage.setResizable(false);
             stage.setScene(new Scene(fullPackingListParent));
             stage.show();
         } catch (IOException e) {
@@ -71,7 +78,7 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(DIRECTIONS_FXML));
             Parent fullDirectionsParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("Directions");
             stage.setScene(new Scene(fullDirectionsParent));
             stage.show();
@@ -85,7 +92,7 @@ public class TripPlannerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(NEW_TRIP_FXML));
             Parent newTripParent = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.DECORATED);
             stage.setTitle("New Trip");
             stage.setScene(new Scene(newTripParent));
             stage.show();
