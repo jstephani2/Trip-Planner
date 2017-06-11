@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
 /**
- * TODO Add Class Javadocs
+ * Controller for Full Directions Window
  *
  * @author bengi
  */
@@ -18,6 +18,6 @@ public class DirectionsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        // TODO
+        //
     }
 }

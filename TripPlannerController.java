@@ -13,11 +13,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
- * TODO Add Class Javadocs
+ * Controller for Main Window of Trip Planner Application.
  *
  * @author bengi
  */
@@ -51,6 +51,7 @@ public class TripPlannerController implements Initializable {
     public Button fullDirectionsButton;
     public Button newTripButton;
     public Pane pane;
+    public VBox vBox;
 
     /**
      * Initializes the controller class.
@@ -94,10 +95,11 @@ public class TripPlannerController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("New Trip");
             stage.setScene(new Scene(newTripParent));
-
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 }

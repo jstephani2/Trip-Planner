@@ -5,7 +5,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-opacity: 0.6;
+    -fx-opacity: 0.9;
     -fx-text-fill: #000000;
 }
 
@@ -17,15 +17,17 @@
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #2a7d1c;
+    -fx-border-radius: 5;
     -fx-border-width: 2;
-    -fx-background-radius: 0;
+    -fx-background-radius: 5;
     -fx-background-color: #cccccc;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-font-size: 11pt;
+    -fx-font: bold 13pt "Arial";
+    -fx-font-size: 13pt;
     -fx-text-fill: #000000;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-effect: dropshadow(one-pass-box, black, 8, 0.0, 2, 0)
 }
-
 
 .button:hover {
     -fx-background-color: #dcdcdc;

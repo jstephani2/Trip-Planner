@@ -24,7 +24,7 @@ public class TripPlannerApp extends Application {
             primaryStage.setScene(new Scene(root, SCENE_WIDTH, SCENE_HEIGHT));
             primaryStage.setTitle(SCENE_TITLE);
             primaryStage.getIcons().add(new Image("icon.png"));
-            //primaryStage.setResizable(false);
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error Starting Program",

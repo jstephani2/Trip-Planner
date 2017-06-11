@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
- * TODO Add Class Javadocs
+ * Controller for the New Trip Window
  *
  * @author bengi
  */

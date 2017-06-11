@@ -40,7 +40,7 @@ public class PackingListController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        // TODO
+        //
     }
 
     //need different names for labels.
