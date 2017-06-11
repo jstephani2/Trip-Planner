@@ -25,45 +25,62 @@ public class Trip {
 	}
 	public static Trip createNewTrip(String name, String[] destinations)
 	{
-		Trip newTrip = new Trip(name, new ArrayList<Destination>());
-		String getDirection = "";
 		
-			try {
-				for(String place : destinations)
+		Trip newTrip = new Trip(name, new ArrayList<Destination>());
+		String getDirection = "https://maps.googleapis.com/maps/api/directions/json?origin=";
+
+		getDirection = getDirection.concat(destinations[0] + "&destination=" + destinations[destinations.length - 1]);
+		if(destinations.length > 2)
+		{
+			getDirection = getDirection.concat("&waypoints=");
+			if(destinations.length > 3)
+			{
+				for(int i = 1; i < destinations.length-2; i++)
 				{
-				place = place.replaceAll(" ", "+");
-				URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + place + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
-				Scanner reader = new Scanner(url.openStream());
-				String input = "";
-				while(reader.hasNextLine())
-				{
-					input = reader.nextLine();
-					if(input.contains("place_id"))
-					{
-						break;
-					}
+					getDirection = getDirection.concat(destinations[i] + "|");
 				}
-				//TODO just put the entered names straight into the directions API
-				String[] placeID = input.split("\"");
-				getDirection = getDirection.concat("place_id:" + placeID[3] + "|");
-				reader.close();
-				}
-				URL directionsURL = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + 
-					getDirection.substring(0, 36) + "&destination=" + getDirection.substring(getDirection.length()-37, getDirection.length()-1).split("|")[0]
-							+ "&waypoints=" + getDirection.substring(37, getDirection.length()-29) + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
-				Scanner reader = new Scanner(directionsURL.openStream());
-				//TODO
-				while(reader.hasNextLine())
-				{
-					System.out.println(reader.nextLine());
-				}
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
+			getDirection = getDirection.concat(destinations[destinations.length-2]);
+		}
+
+		//	
+		//		
+//			try {
+//				for(String place : destinations)
+//				{
+//				place = place.replaceAll(" ", "+");
+//				URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + place + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
+//				Scanner reader = new Scanner(url.openStream());
+//				String input = "";
+//				while(reader.hasNextLine())
+//				{
+//					input = reader.nextLine();
+//					if(input.contains("place_id"))
+//					{
+//						break;
+//					}
+//				}
+//				//TODO just put the entered names straight into the directions API
+//				String[] placeID = input.split("\"");
+//				getDirection = getDirection.concat("place_id:" + placeID[3] + "|");
+//				reader.close();
+//				}
+//				URL directionsURL = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + 
+//					getDirection.substring(0, 36) + "&destination=" + getDirection.substring(getDirection.length()-37, getDirection.length()-1).split("|")[0]
+//							+ "&waypoints=" + getDirection.substring(37, getDirection.length()-29) + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
+//				Scanner reader = new Scanner(directionsURL.openStream());
+//				//TODO
+//				while(reader.hasNextLine())
+//				{
+//					System.out.println(reader.nextLine());
+//				}
+//			} catch (MalformedURLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			
 			//TODO get directions between each destination
 			//TODO create the new destination
