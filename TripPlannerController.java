@@ -12,9 +12,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 
 /**
  * Controller for Main Window of Trip Planner Application.
@@ -52,6 +56,8 @@ public class TripPlannerController implements Initializable {
     public Button newTripButton;
     public Pane pane;
     public VBox vBox;
+    public Button newDestinationButton;
+    public Rectangle rectangleToCopy;
 
     /**
      * Initializes the controller class.
@@ -60,6 +66,21 @@ public class TripPlannerController implements Initializable {
     public void initialize(URL url, ResourceBundle bundle) {
         //Pane Background
         pane.setStyle("-fx-background-color: #848484");
+    }
+
+    public void newDestinationButton(ActionEvent event) {
+        String destinationString = JOptionPane.showInputDialog(null, "Name of Destination: ");
+        //TODO Destination Declaration and Update Label Info
+        Label destinationLabel = new Label("Destination: " + destinationString);
+        Label distanceLabel = new Label("Distance: ");
+        Label timeLabel = new Label("Time: ");
+        Rectangle rectangle = new Rectangle(371,4);
+        rectangle.setStyle(rectangleToCopy.getStyle());
+        rectangle.setStroke(rectangleToCopy.getStroke());
+        rectangle.setArcHeight(5);
+        rectangle.setArcWidth(5);
+        rectangle.setFill(rectangleToCopy.getFill());
+        vBox.getChildren().addAll(destinationLabel,distanceLabel,timeLabel,rectangle);
     }
 
     public void fullPackingListButton(ActionEvent event) {

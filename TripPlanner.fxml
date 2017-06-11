@@ -37,7 +37,7 @@
             <content>
                 <VBox fx:id="vBox" prefHeight="200.0" prefWidth="399.0" spacing="3.0">
                     <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="5.0" layoutX="10.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" width="371.0">
+                  <Rectangle fx:id="rectangleToCopy" arcHeight="5.0" arcWidth="5.0" height="5.0" layoutX="10.0" layoutY="82.0" stroke="BLACK" strokeType="INSIDE" width="371.0">
                      <fill>
                         <RadialGradient centerX="0.5277777777777778" centerY="0.5380952380952381" radius="0.872093023255814">
                            <stops>
@@ -46,21 +46,7 @@
                            </stops>
                         </RadialGradient>
                      </fill></Rectangle>
-                        <Label text="Destination: " />
-                        <Label text="Distance: " />
-                        <Label text="Time: " />
-                  <Button mnemonicParsing="false" text="Button" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" height="5.0" layoutX="10.0" layoutY="10.0" stroke="BLACK" strokeType="INSIDE" width="371.0">
-                     <fill>
-                        <RadialGradient centerX="0.5277777777777778" centerY="0.5380952380952381" radius="0.872093023255814">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </RadialGradient>
-                     </fill>
-                  </Rectangle>
-                        <Button mnemonicParsing="false" text="Button" />
+                        <Button fx:id="newDestinationButton" mnemonicParsing="false" onAction="#newDestinationButton" text="New Destination" />
                     </children>
                 </VBox>
             </content>
@@ -68,7 +54,7 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
             </padding>
         </ScrollPane>
-        <Label layoutX="31.0" layoutY="132.0" />
+        <Label layoutX="31.0" layoutY="132.0" text="Destination Start:" />
         <Label layoutX="31.0" layoutY="229.0" text="Destination End:" />
     </children>
 </Pane>
