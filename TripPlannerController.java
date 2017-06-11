@@ -29,6 +29,12 @@ public class TripPlannerController implements Initializable {
      * Top-Left is just the first destination and the last destination.
      * Main window landscape, secondary windows portrait.
      * DO NOT add list buttons on the new trip
+     *
+     * For Main Window Right Side Scroll
+     * Destination - "Name"
+     * Distance
+     * Time
+     * Rectangle?
      */
 
     //CSS StyleSheet
@@ -51,6 +57,7 @@ public class TripPlannerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
+        //Pane Background
         pane.setStyle("-fx-background-color: #848484");
     }
 
