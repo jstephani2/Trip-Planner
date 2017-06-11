@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -43,13 +44,14 @@ public class TripPlannerController implements Initializable {
     public Button fullPackingListButton;
     public Button fullDirectionsButton;
     public Button newTripButton;
+    public Pane pane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-
+        pane.setStyle("-fx-background-color: #848484");
     }
 
     public void fullPackingListButton(ActionEvent event) {
