@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PackingListController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PackingListController">
     <children>
         <ScrollPane layoutY="30.0" prefHeight="570.0" prefWidth="500.0">
             <content>
@@ -15,10 +15,10 @@
         </ScrollPane>
       <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="500.0" spacing="10.0">
          <children>
-            <Button fx:id="newButton" onAction="#newButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="New" />
-            <Button fx:id="deleteButton" onAction="#deleteButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Delete" />
-            <Button fx:id="undoButton" onAction="#undoButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Undo" />
-            <Button fx:id="redoButton" onAction="#redoButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Redo" />
+            <Button fx:id="newButton" mnemonicParsing="false" onAction="#newButton" prefHeight="30.0" prefWidth="70.0" text="New" />
+            <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButton" prefHeight="30.0" prefWidth="70.0" text="Delete" />
+            <Button fx:id="undoButton" mnemonicParsing="false" onAction="#undoButton" prefHeight="30.0" prefWidth="70.0" text="Undo" />
+            <Button fx:id="redoButton" mnemonicParsing="false" onAction="#redoButton" prefHeight="30.0" prefWidth="70.0" text="Redo" />
          </children>
       </HBox>
     </children>

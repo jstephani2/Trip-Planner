@@ -33,6 +33,9 @@ public class NewTripController implements Initializable {
     private ArrayList<Destination> destinationArrayList = new ArrayList<>();
     private int numOfStops = 0;
 
+    //TODO Create button on bottom? done? textfields are already editable. could create temp doc of locations
+    //TODO stylesheet
+
     /**
      * Initializes the controller class.
      */
@@ -44,7 +47,6 @@ public class NewTripController implements Initializable {
     public void startTextField(ActionEvent event) {
         String temp = startTextField.getText();
         generateNew();
-        numOfStops++;
         textBoxWaiter();
     }
 
@@ -52,15 +54,20 @@ public class NewTripController implements Initializable {
         embedTextField.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                //TODO Destination declaration and add to the arraylist for later access.
+                String temp = embedTextField.getText();
                vBox.getChildren().remove(numOfStops);
                HBox hBox = new HBox();
                hBox.setPrefWidth(400);
                hBox.setPrefHeight(40);
-               Label label = new Label("Stop #1: " + embedTextField.getText());
-               embedTextField = new TextField();
-               hBox.getChildren().addAll(label, embedTextField);
+               Label label = new Label("Stop #" + numOfStops + ": ");
+               TextField localTextField = new TextField();
+               localTextField.setText(temp);
+               hBox.getChildren().addAll(label, localTextField);
                hBox.setAlignment(Pos.CENTER_LEFT);
                vBox.getChildren().add(hBox);
+               generateNew();
+               textBoxWaiter();
             }
         });
     }
@@ -74,6 +81,7 @@ public class NewTripController implements Initializable {
         hBox.getChildren().addAll(label, embedTextField);
         hBox.setAlignment(Pos.CENTER_LEFT);
         vBox.getChildren().add(hBox);
+        numOfStops++;
     }
 
     //HBox with label and TextBox inside.
