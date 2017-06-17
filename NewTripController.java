@@ -2,38 +2,39 @@
  * Created by bengi on 6/8/2017.
  */
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-
 /**
- * TODO Add Class Javadocs
+ * Controller for the New Trip Window
  *
  * @author bengi
  */
 public class NewTripController implements Initializable {
 
-    /*
-     * Get start layout y , when adding under it add the stop 20 under the start y, move the add stop down 20.
-     * and resize pane by 20. limit pane max size.
-     *
-     */
-
-    private int numOfStops = 1;
-
     //FXML import
+    public VBox vBox;
     public TextField startTextField;
-    public TextField addStopTextField;
-    public TextField endTextField;
-    public Pane pane;
-    public Label startLabel;
-    public Label addStopLabel;
-    public Label endLabel;
+
+    @FXML private TextField embedTextField;
+
+    private ArrayList<Destination> destinationArrayList = new ArrayList<>();
+    private int numOfStops = 0;
+
+    //TODO Create button on bottom? done? textfields are already editable. could create temp doc of locations
+    //TODO stylesheet
 
     /**
      * Initializes the controller class.
@@ -43,33 +44,46 @@ public class NewTripController implements Initializable {
 
     }
 
-    //create new stop
+    public void startTextField(ActionEvent event) {
+        String temp = startTextField.getText();
+        generateNew();
+        textBoxWaiter();
+    }
 
+    private void textBoxWaiter() {
+        embedTextField.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //TODO Destination declaration and add to the arraylist for later access.
+                String temp = embedTextField.getText();
+               vBox.getChildren().remove(numOfStops);
+               HBox hBox = new HBox();
+               hBox.setPrefWidth(400);
+               hBox.setPrefHeight(40);
+               Label label = new Label("Stop #" + numOfStops + ": ");
+               TextField localTextField = new TextField();
+               localTextField.setText(temp);
+               hBox.getChildren().addAll(label, localTextField);
+               hBox.setAlignment(Pos.CENTER_LEFT);
+               vBox.getChildren().add(hBox);
+               generateNew();
+               textBoxWaiter();
+            }
+        });
+    }
 
-    public void addStopTextField(ActionEvent event) {
-        //pane resize
-        double sizeBeforeResize = pane.getHeight();
-        pane.setPrefHeight(sizeBeforeResize + 20);
-        //stop generation
-        Label label = new Label("Stop:");
-        label.setLayoutX(startLabel.getLayoutX());
-        label.setLayoutY(startLabel.getLayoutY() + 20 * numOfStops);
-        label.setText("Stop:");
-        TextField textField = new TextField();
-        textField.setLayoutX(startTextField.getLayoutX() - 5);
-        textField.setLayoutY(startTextField.getLayoutY() + 20);
-        textField.setText(addStopTextField.getText());
-        //move addstop and end
-        addStopLabel.setLayoutY(addStopLabel.getLayoutY() + 20);
-        addStopTextField.setLayoutY(addStopTextField.getLayoutY() + 20);
-        endLabel.setLayoutY(endLabel.getLayoutY() + 20);
-        endTextField.setLayoutY(endTextField.getLayoutY() + 20);
-        //update
+    private void generateNew() {
+        HBox hBox = new HBox();
+        hBox.setPrefHeight(40);
+        hBox.setPrefWidth(400);
+        Label label = new Label("Add Stop: ");
+        embedTextField = new TextField();
+        hBox.getChildren().addAll(label, embedTextField);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        vBox.getChildren().add(hBox);
         numOfStops++;
-        //if entered, then pane size y + 20, addstop and end moved down 20.
     }
 
-    public void endTextField(ActionEvent event) {
+    //HBox with label and TextBox inside.
 
-    }
 }

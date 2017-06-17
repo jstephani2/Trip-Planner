@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
@@ -30,17 +31,20 @@ public class PackingListController implements Initializable {
     public Button undoButton;
     public Button redoButton;
     public VBox vBox;
+    public Pane pane;
 
     private ArrayList<String> itemArrayList = new ArrayList<>();
 
-    //list of labels, when hit delete convert to buttons, if button is hit it is deleted from list of labels, and the list is reupdated.
+    //TODO list of labels, when hit delete convert to buttons, if button is hit it is deleted from list of labels, and the list is reupdated.
+    ///TODO circular buttons when delete hit?
+
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-        // TODO
+        //
     }
 
     //need different names for labels.
@@ -56,13 +60,15 @@ public class PackingListController implements Initializable {
     }
 
     public void undoButton(ActionEvent event) {
-
+        //TODO remove the last index from list and vbox. Store in stack
     }
 
     public void redoButton(ActionEvent event) {
-
+        //TODO store in stack, calls back off the top of the stack and adds to the vbox
     }
 
+    //TODO There has to be a better way to do this. Maybe just a textfield, on enter add to list and upate. then clear the textfield text.???
+    //TODO Don't clear the vbox everytime, just add onto it. That way you can delete using index from selected to delete and vbox.getChildren.remove(index);
     private void updateVBox() {
         int size = itemArrayList.size();
         vBox.getChildren().clear();
@@ -72,5 +78,13 @@ public class PackingListController implements Initializable {
             tempLabel.setFont(font);
             vBox.getChildren().add(tempLabel);
         }
+        String text = JOptionPane.showInputDialog(null, "New Item: ");
+        if(text == null || text.replaceAll("\\s+","").equals("")) {
+            return;
+        }
+        //Label tempLabel = new Label("- " + text);
+        itemArrayList.add(text);
+        pane.toFront();
+        updateVBox();
     }
 }
