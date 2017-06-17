@@ -13,7 +13,8 @@ public class TripPlannerApp extends Application {
     private static final String SCENE_FXML = "TripPlanner.fxml";
     
     public static void main(String[] args) {
-		launch(args);
+    	
+    	launch(args);
 	}
 
     @Override

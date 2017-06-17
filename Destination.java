@@ -7,10 +7,10 @@ public class Destination {
 //	private Destination next;
 	private double distance;
 	private int length;
-	private String directions;
+	private ArrayList<String> directions;
 	
 	public Destination(String name, ArrayList<String> packingList, double distance, int length,
-			String directions)
+			ArrayList<String> directions)
 	{
 		this.name = name;
 		this.packingList = packingList;
@@ -19,13 +19,22 @@ public class Destination {
 		this.length = length;
 		this.directions = directions;
 	}
-	public Destination(String name, Destination next, double distance, int length)
+	public Destination(String name, double distance, int length)
 	{
 		this.name = name;
 		packingList = new ArrayList<String>();
 //		this.next = next;
 		this.distance = distance;
 		this.length = length;
+	}
+	public Destination(String name, double distance, int length, ArrayList<String> directions)
+	{
+		this.name = name;
+		packingList = new ArrayList<String>();
+//		this.next = next;
+		this.distance = distance;
+		this.length = length;
+		this.directions = directions;
 	}
 	public void addToPackingList(String item)
 	{
@@ -48,6 +57,16 @@ public class Destination {
 		else
 			System.out.println(item + " did not exist in the list.");
 	}
+	public String getDuration()
+	{
+		int mins = length%60;
+		int hrs = length/60;
+		return hrs + " hours, " + mins + " mins";
+	}
+	public String getDistance()
+	{
+		return distance + "miles";
+	}
 	@Override
 	public String toString()
 	{
@@ -56,7 +75,7 @@ public class Destination {
 		{
 			toReturn = toReturn.concat(packingItem + ",");
 		}
-		toReturn = toReturn.concat("\n" + numItemsInList + "\n" + distance + "\n" + length + "\n" + directions);
+		toReturn = toReturn.concat("\n" + numItemsInList + "\n" + distance + " miles\n" + length + " mins\n" + directions);
 		//TODO
 		return toReturn;
 		
