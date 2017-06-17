@@ -80,19 +80,22 @@ public class Destination {
 		return toReturn;
 		
 	}
-//	public void setNext(Destination place)
-//	{
-//		this.next = place;
-//	}
-//	public Destination getNext()
-//	{
-//		return next;
-//	}
-//	public void print()
-//	{
-//		System.out.println(name + " " + distance + " miles " + length + " minutes.");
-//		if(null == next)
-//			return;
-//		next.print();
-//	}
+	public String getDirectionString()
+	{
+		String toReturn = "";
+		for(String dir : directions)
+		{
+			toReturn = toReturn.concat(dir + "\n");
+		}
+		return toReturn;
+	}
+	public String getPackingListString()
+	{
+		String toReturn = "";
+		for(String item : packingList)
+		{
+			toReturn = toReturn.concat(item + "\n");
+		}
+		return toReturn;
+	}
 }

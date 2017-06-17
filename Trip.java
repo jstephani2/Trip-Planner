@@ -25,18 +25,12 @@ public class Trip {
 		this.destinationList = destinations;
 		this.name = name;
 	}
-//	public Destination getStart()
-//	{
-//		return start;
-//	}
+
 	public static Trip createTripFromFile()
 	{
 		return null;
 	}
-//	private static Node nodeFinder(Document doc)
-//	{
-//		doc.getElementsByTagName(tagname);
-//	}
+
 	private static String instructionsHelper(String line)
 	{
 		String temp = line.split("\"")[3].replaceAll("\\\\u003cb\\\\u003e", "");
@@ -152,84 +146,7 @@ public class Trip {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
-		
-		
-//		try{
-//			URL url = new URL(getDirection);
-//			DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-//			Document doc = dBuilder.parse(url.openStream());
-//			NodeList nodes =  doc.getFirstChild().getFirstChild().getFirstChild().getChildNodes();
-//			String testing = doc.getFirstChild().getFirstChild().getFirstChild().getNodeName();
-//			for(int i = 0; i < nodes.getLength(); i++)
-//			{
-//				if(nodes.item(i).getNodeName().equals("step"))
-//				{
-//					parseStep(nodes.item(i));
-//				}
-//			}
-//			String[] directions;
-//			//Destination dest = new Destination();
-//
-//		}
-//	 catch (MalformedURLException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-		//	
-		//		
-//			try {
-//				for(String place : destinations)
-//				{
-//				place = place.replaceAll(" ", "+");
-//				URL url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + place + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
-//				Scanner reader = new Scanner(url.openStream());
-//				String input = "";
-//				while(reader.hasNextLine())
-//				{
-//					input = reader.nextLine();
-//					if(input.contains("place_id"))
-//					{
-//						break;
-//					}
-//				}
-//				//TODO just put the entered names straight into the directions API
-//				String[] placeID = input.split("\"");
-//				getDirection = getDirection.concat("place_id:" + placeID[3] + "|");
-//				reader.close();
-//				}
-//				URL directionsURL = new URL("https://maps.googleapis.com/maps/api/directions/json?origin=" + 
-//					getDirection.substring(0, 36) + "&destination=" + getDirection.substring(getDirection.length()-37, getDirection.length()-1).split("|")[0]
-//							+ "&waypoints=" + getDirection.substring(37, getDirection.length()-29) + "&key=AIzaSyDQ_iWzgtsKNnSExboEJsGBy4E7-hCrXGg");
-//				Scanner reader = new Scanner(directionsURL.openStream());
-//				//TODO
-//				while(reader.hasNextLine())
-//				{
-//					System.out.println(reader.nextLine());
-//				}
-//			} catch (MalformedURLException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-// catch (SAXException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	} catch (ParserConfigurationException e) {
-//	// TODO Auto-generated catch block
-//	e.printStackTrace();
-//}
-			
-			//TODO get directions between each destination
-			//TODO create the new destination
-			//TODO add the destination to newTrip's destinationList
-		
+			}	
 		return newTrip;
 	}
 	@Override
@@ -245,6 +162,7 @@ public class Trip {
 	}
 	public void saveTripToFile()
 	{
+		//TODO
 		try {
 			FileWriter output = new FileWriter(this.name + ".txt");
 			for(Destination dest : destinationList)
@@ -253,20 +171,41 @@ public class Trip {
 			}
 			output.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	public void removeDestination()
 	{
-	
+	//TODO
 	}
 	public void addDestination(int pos, Destination destination)
 	{
 		destinationList.add(pos,destination);
 	}
+	public Destination getDestination(int pos)
+	{
+		return destinationList.get(pos);
+	}
 	public int getNumberOfDestinations()
 	{
 		return destinationList.size();
+	}
+	public String getFullDirectionString()
+	{
+		String toReturn = "";
+		for(Destination dest : destinationList)
+		{
+			toReturn = toReturn.concat(dest.getDirectionString() + "\n");
+		}
+		return toReturn;
+	}
+	public String getFullPackingListString()
+	{
+		String toReturn = "";
+		for(Destination dest : destinationList)
+		{
+			toReturn = toReturn.concat(dest.getPackingListString() + "\n");
+		}
+		return toReturn;
 	}
 }
