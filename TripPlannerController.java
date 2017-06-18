@@ -4,6 +4,7 @@
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -33,13 +34,9 @@ public class TripPlannerController implements Initializable {
      * Top-Left is just the first destination and the last destination.
      * Main window landscape, secondary windows portrait.
      * DO NOT add list buttons on the new trip
-     *
-     * For Main Window Right Side Scroll
-     * Destination - "Name"
-     * Distance
-     * Time
-     * Rectangle?
      */
+
+    //TODO OPEN BUTTON, SAVE TRIP AS TXT FILE AND OPEN USING FILE CHOOSER
 
     //CSS StyleSheet
     //http://code.makery.ch/library/javafx-8-tutorial/part4/
@@ -49,6 +46,10 @@ public class TripPlannerController implements Initializable {
     private static final String NEW_TRIP_FXML = "NewTrip.fxml";
     private static final String PACKING_LIST_FXML = "PackingList.fxml";
     private static final String DIRECTIONS_FXML = "Directions.fxml";
+
+    public static Trip newTrip;
+    public static ArrayList<Destination> destinationArrayList = new ArrayList<>();
+
 
     //FXML IMPORT
     public Button fullPackingListButton;
@@ -68,8 +69,27 @@ public class TripPlannerController implements Initializable {
         pane.setStyle("-fx-background-color: #848484");
     }
 
+    public void updateTripDisplay() {
+        vBox.getChildren().removeAll();
+        for(Destination des : destinationArrayList) {
+            Label destinationLabel = new Label("Destination: " + des.toString());
+            Label distanceLabel = new Label("Distance: ");
+            Label timeLabel = new Label("Time: ");
+            Rectangle rectangle = new Rectangle(371,4);
+            rectangle.setStyle(rectangleToCopy.getStyle());
+            rectangle.setStroke(rectangleToCopy.getStroke());
+            rectangle.setArcHeight(5);
+            rectangle.setArcWidth(5);
+            rectangle.setFill(rectangleToCopy.getFill());
+            vBox.getChildren().addAll(destinationLabel,distanceLabel,timeLabel,rectangle);
+        }
+    }
+
     public void newDestinationButton(ActionEvent event) {
         String destinationString = JOptionPane.showInputDialog(null, "Name of Destination: ");
+        if(destinationString == null) {
+            return;
+        }
         //TODO Destination Declaration and Update Label Info
         Label destinationLabel = new Label("Destination: " + destinationString);
         Label distanceLabel = new Label("Distance: ");
@@ -110,15 +130,20 @@ public class TripPlannerController implements Initializable {
     }
 
     public void newTripButton(ActionEvent event) {
+        Stage stage = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(NEW_TRIP_FXML));
             Parent newTripParent = fxmlLoader.load();
-            Stage stage = new Stage();
+            stage = new Stage();
             stage.setTitle("New Trip");
             stage.setScene(new Scene(newTripParent));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        //TODO SOLUTION TO ACTIVATE UPDATETRIPDISPLAY WHEN NEW TRIP WINDOW IS EXITED
+        if(!stage.isShowing()) {
+            updateTripDisplay();
         }
     }
 
