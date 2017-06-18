@@ -28,16 +28,16 @@ public class Main {
 //			
 //		}
 	}
-	private static Destination addNewDestination(Scanner in, Destination tail)
-	{
-		System.out.println("Enter Destination Name: ");
-		String name = in.next();
-		System.out.println("Distance from previous destination: ");
-		double distance = in.nextDouble();
-		System.out.println("Length from previous destination (in mins):");
-		int length = in.nextInt();
-		Destination newPlace = new Destination(name, null, distance, length);
-		return newPlace;
-	}
+//	private static Destination addNewDestination(Scanner in, Destination tail)
+//	{
+//		System.out.println("Enter Destination Name: ");
+//		String name = in.next();
+//		System.out.println("Distance from previous destination: ");
+//		double distance = in.nextDouble();
+//		System.out.println("Length from previous destination (in mins):");
+//		int length = in.nextInt();
+////		Destination newPlace = new Destination(name, null, distance, length);
+//		return newPlace;
+//	}
 
 }

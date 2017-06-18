@@ -84,7 +84,7 @@ public class Trip {
 			
 			//TODO get directions between each destination
 			//TODO create the new destination
-			//TODO add the destination to tempTrip's destinationList
+			//TODO add the destination to newTrip's destinationList
 		
 		return null;
 	}
