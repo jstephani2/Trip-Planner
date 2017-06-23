@@ -57,6 +57,10 @@ public class Destination {
 		else
 			System.out.println(item + " did not exist in the list.");
 	}
+	public String getName()
+	{
+		return name;
+	}
 	public String getDuration()
 	{
 		int mins = length%60;
