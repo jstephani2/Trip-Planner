@@ -7,17 +7,21 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import javax.swing.*;
 
@@ -48,7 +52,7 @@ public class TripPlannerController implements Initializable {
     private static final String DIRECTIONS_FXML = "Directions.fxml";
 
     public static Trip newTrip;
-    public static ArrayList<Destination> destinationArrayList = new ArrayList<>();
+    public static ArrayList<String> destinationArrayList = new ArrayList<>();
 
 
     //FXML IMPORT
@@ -59,6 +63,10 @@ public class TripPlannerController implements Initializable {
     public VBox vBox;
     public Button newDestinationButton;
     public Rectangle rectangleToCopy;
+    public Label destinationStartLabel;
+    public Label destinationEndLabel;
+
+    private Stage newTripWindowStage;
 
     /**
      * Initializes the controller class.
@@ -67,22 +75,31 @@ public class TripPlannerController implements Initializable {
     public void initialize(URL url, ResourceBundle bundle) {
         //Pane Background
         pane.setStyle("-fx-background-color: #848484");
+
     }
 
     public void updateTripDisplay() {
-        vBox.getChildren().removeAll();
-        for(Destination des : destinationArrayList) {
-            Label destinationLabel = new Label("Destination: " + des.toString());
-            Label distanceLabel = new Label("Distance: ");
-            Label timeLabel = new Label("Time: ");
-            Rectangle rectangle = new Rectangle(371,4);
-            rectangle.setStyle(rectangleToCopy.getStyle());
-            rectangle.setStroke(rectangleToCopy.getStroke());
-            rectangle.setArcHeight(5);
-            rectangle.setArcWidth(5);
-            rectangle.setFill(rectangleToCopy.getFill());
-            vBox.getChildren().addAll(destinationLabel,distanceLabel,timeLabel,rectangle);
+        if(destinationArrayList.size() > 0) {
+            vBox.getChildren().removeAll();
+            for(String des : destinationArrayList) {
+                Label destinationLabel = new Label("Destination: " + des);
+                Label distanceLabel = new Label("Distance: ");
+                Label timeLabel = new Label("Time: ");
+                Rectangle rectangle = new Rectangle(371,4);
+                rectangle.setStyle(rectangleToCopy.getStyle());
+                rectangle.setStroke(rectangleToCopy.getStroke());
+                rectangle.setArcHeight(5);
+                rectangle.setArcWidth(5);
+                rectangle.setFill(rectangleToCopy.getFill());
+                vBox.getChildren().addAll(destinationLabel,distanceLabel,timeLabel,rectangle);
+            }
+            destinationStartLabel.setText("Destination Start: " + destinationArrayList.get(0));
+            destinationEndLabel.setText("Destination End: " + destinationArrayList.get(destinationArrayList.size() - 1));
         }
+    }
+
+    public static void setDestinationArrayList(ArrayList<String> list) {
+        destinationArrayList = list;
     }
 
     public void newDestinationButton(ActionEvent event) {
@@ -101,6 +118,7 @@ public class TripPlannerController implements Initializable {
         rectangle.setArcWidth(5);
         rectangle.setFill(rectangleToCopy.getFill());
         vBox.getChildren().addAll(destinationLabel,distanceLabel,timeLabel,rectangle);
+        updateTripDisplay();
     }
 
     public void fullPackingListButton(ActionEvent event) {
@@ -110,6 +128,7 @@ public class TripPlannerController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Packing List");
             stage.setScene(new Scene(fullPackingListParent));
+            stage.getIcons().add(new Image("icon.png"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,6 +142,7 @@ public class TripPlannerController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Directions");
             stage.setScene(new Scene(fullDirectionsParent));
+            stage.getIcons().add(new Image("icon.png"));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -130,21 +150,35 @@ public class TripPlannerController implements Initializable {
     }
 
     public void newTripButton(ActionEvent event) {
-        Stage stage = null;
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(NEW_TRIP_FXML));
             Parent newTripParent = fxmlLoader.load();
-            stage = new Stage();
-            stage.setTitle("New Trip");
-            stage.setScene(new Scene(newTripParent));
-            stage.show();
+            newTripWindowStage = new Stage();
+            newTripWindowStage.setTitle("New Trip");
+            newTripWindowStage.setScene(new Scene(newTripParent));
+            newTripWindowStage.show();
+            newTripWindowStage.getIcons().add(new Image("icon.png"));
+            newTripWaiter();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO SOLUTION TO ACTIVATE UPDATETRIPDISPLAY WHEN NEW TRIP WINDOW IS EXITED
-        if(!stage.isShowing()) {
-            updateTripDisplay();
-        }
+    }
+
+
+    //https://stackoverflow.com/questions/22576261/how-get-close-event-of-stage-in-javafx
+
+    public void newTripWaiter() {
+        newTripWindowStage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateTripDisplay();
+                    }
+                });
+            }
+        });
     }
 
 

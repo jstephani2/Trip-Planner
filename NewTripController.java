@@ -2,7 +2,6 @@
  * Created by bengi on 6/8/2017.
  */
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,9 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,12 +29,14 @@ public class NewTripController implements Initializable {
     //FXML import
     public VBox vBox;
     public TextField startTextField;
+    public ScrollPane scrollPane;
 
     @FXML private TextField embedTextField;
     @FXML private Button doneButton;
 
-    private ArrayList<Destination> destinationArrayList = new ArrayList<>();
+    private ArrayList<String> stringArrayList = new ArrayList<>();
     private int numOfStops = 0;
+    private Stage newTripStage;
 
     //TODO Create button on bottom? done? textfields are already editable. could create temp doc of locations
     //TODO stylesheet
@@ -43,7 +46,8 @@ public class NewTripController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
-
+        scrollPane.setStyle("-fx-background-color: #848484");
+        vBox.setStyle("-fx-background-color: #848484");
     }
 
     private void doneButtonWaiter() {
@@ -52,15 +56,18 @@ public class NewTripController implements Initializable {
             public void handle(ActionEvent event) {
                 //TODO create Trip, then access and update the front.
                 //update to the global trip
-                TripPlannerController.newTrip = new Trip("tempTrip", destinationArrayList);
-                TripPlannerController.destinationArrayList = destinationArrayList;
-                Platform.exit();
+                //TripPlannerController.newTrip = new Trip("tempTrip", stringArrayList);
+                TripPlannerController.setDestinationArrayList(stringArrayList);
+                newTripStage = (Stage) scrollPane.getScene().getWindow();
+                newTripStage.hide();
             }
         });
     }
 
     public void startTextField(ActionEvent event) {
         String temp = startTextField.getText();
+        //TODO DESTINATION ADD INFO
+        stringArrayList.add(temp);
         generateNew();
         textBoxWaiter();
     }
@@ -70,7 +77,9 @@ public class NewTripController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 //TODO Destination declaration and add to the arraylist for later access.
+                //TODO DESTINATION ADD INFO
                 String temp = embedTextField.getText();
+                stringArrayList.add(temp);
                vBox.getChildren().remove(numOfStops);
                vBox.getChildren().remove(numOfStops);
                HBox hBox = new HBox();
