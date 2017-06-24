@@ -102,13 +102,33 @@ public class Trip {
 			e.printStackTrace();
 		}
 	}
-	public void removeDestination()
+	public Trip removeDestination(String dest)
 	{
+<<<<<<< HEAD
+	//TODO
+		if(destinationList.remove(dest))
+		{
+			String[] names = new String[destinationList.size()];
+			for(int i = 0; i < destinationList.size(); i++)
+			{
+				names[i] = destinationList.get(i).getName();
+			}
+			return createNewTrip(this.name, names);
+		}
+		else return this;
+=======
 	
+>>>>>>> e36a1173ab483a545db4a17fd42b30fec5d5719b
 	}
-	public void addDestination(int pos, Destination destination)
+	public Trip addDestination(int pos, Destination destination)
 	{
 		destinationList.add(pos,destination);
+		String[] names = new String[destinationList.size()];
+		for(int i = 0; i < destinationList.size(); i++)
+		{
+			names[i] = destinationList.get(i).getName();
+		}
+		return createNewTrip(this.name, names);
 	}
 	public int getNumberOfDestinations()
 	{
