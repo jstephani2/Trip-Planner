@@ -104,7 +104,7 @@ public class Trip {
 	}
 	public Trip removeDestination(String dest)
 	{
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	//TODO
 		if(destinationList.remove(dest))
 		{
@@ -116,9 +116,9 @@ public class Trip {
 			return createNewTrip(this.name, names);
 		}
 		else return this;
-=======
+//=======
 	
->>>>>>> e36a1173ab483a545db4a17fd42b30fec5d5719b
+//>>>>>>> e36a1173ab483a545db4a17fd42b30fec5d5719b
 	}
 	public Trip addDestination(int pos, Destination destination)
 	{

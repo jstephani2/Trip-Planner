@@ -141,7 +141,7 @@ public class TripPlannerController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //TODO SOLUTION TO ACTIVATE UPDATETRIPDISPLAY WHEN NEW TRIP WINDOW IS EXITED
+        //TODO SOLUTION TO ACTIVATE UPDATETRIPDISPLAY WHEN NEW TRIP WINDOW IS EXITED, POSSIBLY FIXED? TEST?
         if(!stage.isShowing()) {
             updateTripDisplay();
         }
