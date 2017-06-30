@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,10 +17,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 
@@ -36,15 +40,12 @@ public class PackingListController implements Initializable {
     public Pane pane;
     public TextField inputTextField;
 
+    @FXML public Button doneButton;
+
     private ArrayList<String> itemArrayList = new ArrayList<>();
+    public ArrayList<String> doneItemArrayList = new ArrayList<>();
 
-
-    //TODO list of labels, when hit delete convert to buttons, if button is hit it is deleted from list of labels, and the list is reupdated.
-    //TODO circular buttons when delete hit?
-    //TODO make joptionpane new item into its own window so can style the window instead of looking horrible.
-
-
-    //TODO make it basic have textfield then when enter just adds the thing, done button. can add additional functionality later.
+    private Stage stage = null;
 
     /**
      * Initializes the controller class.
@@ -52,11 +53,17 @@ public class PackingListController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
         pane.setStyle("-fx-background-color: #848484");
+        if(TripPlannerController.itemArrayList.size() > 0) {
+            vBox.getChildren().remove(inputTextField);
+            for(String item : TripPlannerController.itemArrayList) {
+                labelGeneration(item);
+                inputTextFieldWaiter();
+            }
+        }
     }
 
     public void inputTextField(ActionEvent event) {
         String item = inputTextField.getText();
-        itemArrayList.add(item);
         labelGeneration(item);
         inputTextFieldWaiter();
     }
@@ -65,7 +72,8 @@ public class PackingListController implements Initializable {
         inputTextField.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                labelGeneration(inputTextField.getText());
+                String item = inputTextField.getText();
+                labelGeneration(item);
                 inputTextFieldWaiter();
             }
         });
@@ -74,21 +82,73 @@ public class PackingListController implements Initializable {
     private void labelGeneration(String item) {
         itemArrayList.add(item);
         Label label = new Label("- " + item);
-        label.setFont(new Font(50));
+        label.setFont(new Font(70));
+        labelDelWaiter(label);
+        labelEnterWaiter(label);
+        labelExitWaiter(label);
         vBox.getChildren().remove(inputTextField);
+        vBox.getChildren().remove(doneButton);
         vBox.getChildren().add(label);
         inputTextField = new TextField();
         vBox.getChildren().add(inputTextField);
+        doneButton = new Button("Done");
+        doneButtonWaiter();
+        vBox.getChildren().add(doneButton);
     }
 
+    private void doneButtonWaiter() {
+        doneButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                doneItemArrayList = itemArrayList;
+                TripPlannerController.itemArrayList = doneItemArrayList;
+                stage = (Stage) doneButton.getScene().getWindow();
+                stage.close();
+            }
+        });
+    }
 
-    //https://stackoverflow.com/questions/26811445/how-to-access-a-child-of-an-object-in-javafx
+    private void labelDelWaiter(Label label) {
+        label.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                //itemArrayList Remove
+                String itemRemove = label.getText().substring(2);
+                int index = itemVerification(itemRemove);
+                itemArrayList.remove(index);
+                vBox.getChildren().remove(index);
+            }
+        });
+    }
 
+    private int itemVerification(String item) {
+        int index = 0;
+        for(String temp : itemArrayList) {
+            if(item.equals(temp)) {
+                return index;
+            } else {
+                index++;
+            }
+        }
+        return -1;
+    }
 
+    private void labelEnterWaiter(Label label) {
+        label.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                label.setTextFill(Color.RED);
+            }
+        });
+    }
 
-    //TODO create new addButton and layer, then modify numOfLayers respectively .
-
-    //TODO There has to be a better way to do this. Maybe just a textfield, on enter add to list and update. then clear the textfield text.???
-    //TODO Don't clear the vbox everytime, just add onto it. That way you can delete using index from selected to delete and vbox.getChildren.remove(index);
+    private void labelExitWaiter(Label label) {
+        label.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                label.setTextFill(Color.BLACK);
+            }
+        });
+    }
 
 }

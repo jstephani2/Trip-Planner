@@ -10,33 +10,13 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" stylesheets="@PackingList.css" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PackingListController">
     <children>
-        <ScrollPane layoutY="35.0" prefHeight="565.0" prefWidth="500.0">
+        <ScrollPane prefHeight="600.0" prefWidth="500.0">
             <content>
-                <VBox fx:id="vBox" prefHeight="565.0" prefWidth="500.0">
+                <VBox fx:id="vBox" prefHeight="600" prefWidth="500.0">
                <children>
                   <TextField fx:id="inputTextField" onAction="#inputTextField" prefHeight="35.0" />
                </children></VBox>
             </content>
         </ScrollPane>
-      <MenuBar prefHeight="35.0" prefWidth="500.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-                  <MenuItem mnemonicParsing="false" text="Open" />
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
     </children>
 </Pane>

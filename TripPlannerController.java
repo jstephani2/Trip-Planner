@@ -49,7 +49,7 @@ public class TripPlannerController implements Initializable {
 
     public static Trip newTrip;
     public static ArrayList<Destination> destinationArrayList = new ArrayList<>();
-
+    public static ArrayList<String> itemArrayList = new ArrayList<>();
 
     //FXML IMPORT
     public Button fullPackingListButton;
