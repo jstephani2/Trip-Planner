@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,11 +30,14 @@ public class NewTripController implements Initializable {
     public VBox vBox;
     public TextField startTextField;
 
-    @FXML private TextField embedTextField;
-    @FXML private Button doneButton;
+    @FXML
+    private TextField embedTextField;
+    @FXML
+    private Button doneButton;
 
     private ArrayList<Destination> destinationArrayList = new ArrayList<>();
     private int numOfStops = 0;
+    private Stage stage;
 
     //TODO Create button on bottom? done? textfields are already editable. could create temp doc of locations
     //TODO stylesheet
@@ -43,7 +47,26 @@ public class NewTripController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle bundle) {
+        if (TripPlannerController.destinationArrayList.size() > 0) {
+            loadCreatedTrip();
+            numOfStops = TripPlannerController.destinationArrayList.size();
+        }
+    }
 
+    private void loadCreatedTrip() {
+        for (int i = 0; i < TripPlannerController.destinationArrayList.size(); i++) {
+            HBox hBox = new HBox();
+            hBox.setPrefHeight(40);
+            hBox.setPrefWidth(400);
+            Label label = new Label("Stop #" + i + ": ");
+            TextField localTextField = new TextField();
+            localTextField.setText(TripPlannerController.destinationArrayList.get(i).getName());
+            hBox.getChildren().addAll(label,localTextField);
+            hBox.setAlignment(Pos.CENTER_LEFT);
+            vBox.getChildren().add(hBox);
+            generateNew();
+            doneButtonWaiter();
+        }
     }
 
     private void doneButtonWaiter() {
@@ -54,7 +77,8 @@ public class NewTripController implements Initializable {
                 //update to the global trip
                 TripPlannerController.newTrip = new Trip("tempTrip", destinationArrayList);
                 TripPlannerController.destinationArrayList = destinationArrayList;
-                Platform.exit();
+                stage = (Stage) doneButton.getScene().getWindow();
+                stage.close();
             }
         });
     }
@@ -71,20 +95,20 @@ public class NewTripController implements Initializable {
             public void handle(ActionEvent event) {
                 //TODO Destination declaration and add to the arraylist for later access.
                 String temp = embedTextField.getText();
-               vBox.getChildren().remove(numOfStops);
-               vBox.getChildren().remove(numOfStops);
-               HBox hBox = new HBox();
-               hBox.setPrefWidth(400);
-               hBox.setPrefHeight(40);
-               Label label = new Label("Stop #" + numOfStops + ": ");
-               TextField localTextField = new TextField();
-               localTextField.setText(temp);
-               hBox.getChildren().addAll(label, localTextField);
-               hBox.setAlignment(Pos.CENTER_LEFT);
-               vBox.getChildren().add(hBox);
-               generateNew();
-               doneButtonWaiter();
-               textBoxWaiter();
+                vBox.getChildren().remove(numOfStops);
+                vBox.getChildren().remove(numOfStops);
+                HBox hBox = new HBox();
+                hBox.setPrefWidth(400);
+                hBox.setPrefHeight(40);
+                Label label = new Label("Stop #" + numOfStops + ": ");
+                TextField localTextField = new TextField();
+                localTextField.setText(temp);
+                hBox.getChildren().addAll(label, localTextField);
+                hBox.setAlignment(Pos.CENTER_LEFT);
+                vBox.getChildren().add(hBox);
+                generateNew();
+                doneButtonWaiter();
+                textBoxWaiter();
             }
         });
     }
@@ -98,7 +122,7 @@ public class NewTripController implements Initializable {
         hBox.getChildren().addAll(label, embedTextField);
         hBox.setAlignment(Pos.CENTER_LEFT);
         doneButton = new Button("Done");
-        vBox.getChildren().addAll(hBox,doneButton);
+        vBox.getChildren().addAll(hBox, doneButton);
         numOfStops++;
     }
 

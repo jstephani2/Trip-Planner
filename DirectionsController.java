@@ -1,11 +1,10 @@
-/**
- * Created by bengi on 6/8/2017.
- */
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 /**
  * Controller for Full Directions Window
@@ -13,6 +12,10 @@ import javafx.fxml.Initializable;
  * @author bengi
  */
 public class DirectionsController implements Initializable {
+
+    public Pane pane;
+    public VBox vBox;
+
     /**
      * Initializes the controller class.
      */
